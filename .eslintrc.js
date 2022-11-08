@@ -22,6 +22,8 @@ module.exports = {
     },
     plugins: ["react"],
     rules: {
+        "no-use-before-defined": 0,
+        "react/require-default-props": 0,
         "prettier/prettier": [
             "error",
             {

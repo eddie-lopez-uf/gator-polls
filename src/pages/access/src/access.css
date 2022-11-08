@@ -1,0 +1,54 @@
+.access-page {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.access-img {
+    background-image: url('../../../assets/access-pic.jpg');
+    background-position: center;
+    background-size: cover;
+    filter: brightness(0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.access-img h1 {
+}
+
+.access-form {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    max-width: 400px;
+    border-radius: 5px;
+}
+
+.access-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.access-form h2 {
+    margin: 0;
+}
+
+.access-form input {
+    width: 300px;
+}

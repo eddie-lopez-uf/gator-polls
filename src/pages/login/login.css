@@ -1,0 +1,54 @@
+.login-page {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.login-img {
+    background-image: url('../../assets/access-pic.jpg');
+    background-position: center;
+    background-size: cover;
+    filter: brightness(0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.login-img h1 {
+}
+
+.login-form {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    gap: 15px;
+    background-color: white;
+}
+
+.login-form h2 {
+    margin: 0;
+}
+
+.login-form input {
+    width: 300px;
+}
