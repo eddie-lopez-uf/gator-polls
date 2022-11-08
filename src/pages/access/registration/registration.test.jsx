@@ -94,5 +94,4 @@ describe("Registration Form", () => {
             )
         ).not.toBeInTheDocument();
     });
-
 });
