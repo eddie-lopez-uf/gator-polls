@@ -8,7 +8,13 @@ describe("Poll", () => {
     it("should toggle onChange when vote is casted", () => {
         // given
         const onChange = jest.fn();
-        render(<Poll onChange={onChange} />);
+        render(
+            <Poll
+                title="Some Poll"
+                content="There is content"
+                onChange={onChange}
+            />
+        );
 
         // when
         const supportButton = getByText(document, /support/i);
@@ -21,7 +27,13 @@ describe("Poll", () => {
     it("should toggle onChange once when support is clicked twice", () => {
         // given
         const onChange = jest.fn();
-        render(<Poll onChange={onChange} />);
+        render(
+            <Poll
+                title="Some Poll"
+                content="Poll content"
+                onChange={onChange}
+            />
+        );
 
         // when
         const supportButton = getByText(document, /support/i);
@@ -34,7 +46,13 @@ describe("Poll", () => {
     it("should toggle onChange once when reject is clicked twice", () => {
         // given
         const onChange = jest.fn();
-        render(<Poll onChange={onChange} />);
+        render(
+            <Poll
+                title="Some Poll"
+                content="Poll content"
+                onChange={onChange}
+            />
+        );
 
         // when
         const rejectButton = getByText(document, /reject/i);
