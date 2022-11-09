@@ -6,8 +6,7 @@ import ConfirmPassword from "./ConfirmPassword";
 
 export default function Form() {
     // input values
-    const [email, setEmail] = useState("");
-    console.log(email);
+    const [, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     // input errors

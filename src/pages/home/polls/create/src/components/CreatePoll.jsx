@@ -21,8 +21,6 @@ export default function CreatePoll() {
         if (!content.length) {
             setContentError("Content is required");
         }
-
-        console.log(title, contentError);
     };
 
     const onTitleChange = (e) => {

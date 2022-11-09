@@ -7,7 +7,6 @@ export const validateConfirmPassword = (inputEvent, password, errorSetter) => {
     const confirmPassword = inputEvent;
 
     // validates confirm password
-    console.log(password, confirmPassword);
     if (password !== confirmPassword) {
         errorSetter("Passwords must match");
     } else {
