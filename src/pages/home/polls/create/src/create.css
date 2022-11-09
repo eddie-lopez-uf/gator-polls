@@ -1,0 +1,13 @@
+.creation-module {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 30px;
+}
+
+.creation-module > form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 500px;
+}

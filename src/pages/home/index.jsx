@@ -1,9 +1,11 @@
 import React from "react";
-import HomePage from "./components/main";
+import { Outlet } from "react-router-dom";
+import pollsRoute from "./polls";
 
 const homeRoute = {
     path: "/",
-    element: <HomePage />,
+    children: [pollsRoute],
+    element: <Outlet />,
 };
 
 export default homeRoute;

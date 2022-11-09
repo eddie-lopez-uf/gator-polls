@@ -21,9 +21,6 @@
     width: 100%;
 }
 
-.access-img h1 {
-}
-
 .access-form {
     position: absolute;
     display: flex;
@@ -32,7 +29,7 @@
     align-items: center;
     background-color: white;
     padding: 20px;
-    max-width: 400px;
+    max-width: 328px;
     border-radius: 5px;
 }
 
@@ -45,10 +42,15 @@
     gap: 15px;
 }
 
+.access-form > div {
+    max-width: 328px;
+}
+
 .access-form h2 {
     margin: 0;
 }
 
 .access-form input {
     width: 300px;
+    max-width: 328px;
 }
