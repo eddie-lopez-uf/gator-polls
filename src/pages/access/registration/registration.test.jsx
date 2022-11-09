@@ -30,7 +30,7 @@ describe("Registration Form", () => {
     it("should only accept matching passwords", () => {
         // given
         render(<Form />);
-        const password = "password";
+        const mockPassword = "password";
         const confirmPassword = "password";
 
         // when then
@@ -39,7 +39,7 @@ describe("Registration Form", () => {
             document.body,
             "Confirm Password"
         );
-        userEvent.type(passwordInput, password);
+        userEvent.type(passwordInput, mockPassword);
         userEvent.type(confirmPasswordInput, confirmPassword);
         expect(
             queryByText(document.body, "Passwords must match")
@@ -55,11 +55,11 @@ describe("Registration Form", () => {
     it("should only accept passwords with at least 1 uppercase letter, 1 lowercase and 1 number", () => {
         // given
         render(<Form />);
-        const password = "password";
+        const mockPassword = "password";
 
         // when then
         const passwordInput = getByLabelText(document.body, "Password");
-        userEvent.type(passwordInput, password);
+        userEvent.type(passwordInput, mockPassword);
         expect(
             getByText(
                 document.body,
