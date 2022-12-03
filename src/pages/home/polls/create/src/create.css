@@ -2,12 +2,18 @@
     display: inline-flex;
     flex-direction: column;
     padding: 20px;
-    margin: 30px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .creation-module > form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 500px;
+    width: 100%;
+}
+
+.creation-module button {
+    width: 250px;
+    margin: 10px auto;
 }

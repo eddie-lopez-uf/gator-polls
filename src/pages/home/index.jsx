@@ -1,11 +1,13 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import HomePage from "./src/components/main";
 import pollsRoute from "./polls";
+import loader from "./src/server/loader";
 
 const homeRoute = {
     path: "/",
     children: [pollsRoute],
-    element: <Outlet />,
+    element: <HomePage />,
+    loader,
 };
 
 export default homeRoute;

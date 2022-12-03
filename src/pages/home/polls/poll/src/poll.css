@@ -2,8 +2,9 @@
     display: inline-flex;
     flex-direction: column;
     padding: 20px;
-    margin: 30px;
-    width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid lightgray;
 }
 
 .poll-module h1 {

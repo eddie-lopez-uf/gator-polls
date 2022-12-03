@@ -1,0 +1,48 @@
+#home {
+    background-image: url('../../../assets/access-pic.jpg');
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#home-module {
+    padding: 20px;
+    width: 1200px;
+    margin: 20px;
+    max-height: 80vh;
+}
+
+#navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.navigation-button {
+    text-decoration: none;
+    transition: font-weight 300ms;
+}
+
+.navigation-button.active > button {
+    font-weight: bold;
+}
+
+.navigation-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#logo > h1 {
+    color: black;
+}

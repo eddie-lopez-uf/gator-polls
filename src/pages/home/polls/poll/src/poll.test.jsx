@@ -4,17 +4,16 @@ import userEvent from "@testing-library/user-event";
 
 import Poll from "./components/PollModule";
 
+const poll = {
+    title: "Some Poll",
+    content: "Some Content",
+};
+
 describe("Poll", () => {
     it("should toggle onChange when vote is casted", () => {
         // given
         const onChange = jest.fn();
-        render(
-            <Poll
-                title="Some Poll"
-                content="There is content"
-                onChange={onChange}
-            />
-        );
+        render(<Poll poll={poll} onChange={onChange} />);
 
         // when
         const supportButton = getByText(document, /support/i);
@@ -27,13 +26,7 @@ describe("Poll", () => {
     it("should toggle onChange once when support is clicked twice", () => {
         // given
         const onChange = jest.fn();
-        render(
-            <Poll
-                title="Some Poll"
-                content="Poll content"
-                onChange={onChange}
-            />
-        );
+        render(<Poll poll={poll} onChange={onChange} />);
 
         // when
         const supportButton = getByText(document, /support/i);
@@ -46,13 +39,7 @@ describe("Poll", () => {
     it("should toggle onChange once when reject is clicked twice", () => {
         // given
         const onChange = jest.fn();
-        render(
-            <Poll
-                title="Some Poll"
-                content="Poll content"
-                onChange={onChange}
-            />
-        );
+        render(<Poll poll={poll} onChange={onChange} />);
 
         // when
         const rejectButton = getByText(document, /reject/i);

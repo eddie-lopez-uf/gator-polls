@@ -1,31 +1,18 @@
 import React, { useState } from "react";
-import { Button, Card, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+import { Form, useActionData, useLoaderData } from "react-router-dom";
 import "../create.css";
+import ErrorBanner from "../../../../src/components/ErrorBanner";
 
 export default function CreatePoll() {
-    // data
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+    const actionData = useActionData();
+    const loaderData = useLoaderData();
 
     // errors
     const [titleError, setTitleError] = useState(false);
     const [contentError, setContentError] = useState(false);
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        if (!title.length) {
-            setTitleError("Title is required");
-        }
-
-        if (!content.length) {
-            setContentError("Content is required");
-        }
-    };
-
     const onTitleChange = (e) => {
-        setTitle(e.target.value);
-
         if (!e.target.value) {
             setTitleError("Title is required");
         } else {
@@ -34,8 +21,6 @@ export default function CreatePoll() {
     };
 
     const onContentChange = (e) => {
-        setContent(e.target.value);
-
         if (!e.target.value) {
             setContentError("Content is required");
         } else {
@@ -44,28 +29,51 @@ export default function CreatePoll() {
     };
 
     return (
-        <Card className="creation-module">
-            <h1>Create Poll</h1>
-            <form onSubmit={onSubmit}>
+        <div className="creation-module">
+            <ErrorBanner actionData={actionData} />
+            <h2>Create Poll</h2>
+            <Form method="post">
+                <input
+                    type="hidden"
+                    aria-hidden
+                    name="author"
+                    value={loaderData?.user?.fullName}
+                />
+                <input
+                    type="hidden"
+                    aria-hidden
+                    name="authorEmail"
+                    value={loaderData?.user?.email}
+                />
                 <TextField
+                    name="title"
                     variant="standard"
                     label="Title"
                     onChange={onTitleChange}
-                    error={!!titleError.length}
-                    helperText={titleError}
+                    error={
+                        !!actionData?.fieldErrors?.title?.length ||
+                        !!titleError.length
+                    }
+                    helperText={actionData?.fieldErrors?.title ?? titleError}
                 />
                 <TextField
+                    name="content"
                     multiline
                     minRows={3}
                     label="Description"
                     onChange={onContentChange}
-                    error={!!contentError.length}
-                    helperText={contentError}
+                    error={
+                        !!actionData?.fieldErrors?.content?.length ||
+                        !!contentError?.length
+                    }
+                    helperText={
+                        actionData?.fieldErrors?.content ?? contentError
+                    }
                 />
                 <Button type="submit" variant="contained">
                     Save Poll
                 </Button>
-            </form>
-        </Card>
+            </Form>
+        </div>
     );
 }
