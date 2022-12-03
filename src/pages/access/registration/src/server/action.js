@@ -1,4 +1,7 @@
+
+
 const action = async ({ request }) => {
+    // establish db connection
     const form = await request.formData();
 
     /* complete request to register on server */
