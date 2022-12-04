@@ -112,6 +112,35 @@ export default class Poll {
     };
 
     /**
+     * Gets all polls with ids provided by in list.
+     *
+     * @param {Array} pollIds array of strings
+     * @returns polls with matching ids
+     */
+    static getIn = async (pollIds) => {
+        // establish the collection we are pulling from
+        const pollsRef = collection(db, "polls");
+
+        // set poll docs
+        try {
+            const q = query(pollsRef, where("id", "in", pollIds));
+            const pollDocs = await getDocs(q);
+
+            const polls = [];
+            pollDocs.forEach((pollDoc) => {
+                polls.push(pollDoc.data());
+            });
+
+            return polls;
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            console.error(err);
+
+            throw new Error("Failed to get polls.");
+        }
+    };
+
+    /**
      * Get a poll by its ID.
      * @param {String} pollId poll id
      */

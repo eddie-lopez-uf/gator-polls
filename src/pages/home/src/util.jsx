@@ -1,6 +1,3 @@
-import React from "react";
-import PollModule from "../polls/poll/src/components/PollModule";
-
 export const applySearch = (data, polls) => {
     const search = data?.search?.toLowerCase();
     const filter = data?.filter?.toLowerCase();
@@ -74,9 +71,16 @@ export const applySearch = (data, polls) => {
     return filtered;
 };
 
+/**
+ * Renders all polls into feed
+ *
+ * @param {Array} polls array of poll objects
+ * @returns All polls
+ */
 export const renderAllPolls = (polls) => {
+    // remove these lines when done implementing :)
+    // eslint-disable-next-line no-console
     console.log(polls);
-    return polls?.map((poll) => {
-        return <PollModule key={poll.id} poll={poll} />;
-    });
+
+    return [];
 };

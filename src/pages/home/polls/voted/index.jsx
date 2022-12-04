@@ -1,11 +1,11 @@
 import React from "react";
-import All from "./src/components/main";
+import Voted from "./src/components/main";
 import loader from "./src/server/loader";
 
-const allRoute = {
-    path: "all",
-    element: <All />,
+const votedRoute = {
+    path: "voted",
+    element: <Voted />,
     loader,
 };
 
-export default allRoute;
+export default votedRoute;
