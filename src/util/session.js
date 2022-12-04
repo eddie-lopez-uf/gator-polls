@@ -9,7 +9,7 @@ import { redirect } from "react-router-dom";
 // eslint-disable-next-line import/prefer-default-export
 export const requireSession = () => {
     // get id from user session
-    const userId = sessionStorage.getItem("user");
+    const userId = localStorage.getItem("user");
 
     // redirect if sesion hasn't been set
     if (!userId) {

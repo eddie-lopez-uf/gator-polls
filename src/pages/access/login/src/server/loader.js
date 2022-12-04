@@ -1,7 +1,7 @@
 import { redirect } from "react-router-dom";
 
 const loader = () => {
-    if (sessionStorage.getItem("user")) {
+    if (localStorage.getItem("user")) {
         throw redirect("/");
     }
 

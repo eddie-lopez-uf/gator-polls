@@ -1,7 +1,7 @@
 import { requireSession } from "../../../../../util/session";
 
 const loader = () => {
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("user");
     requireSession();
 };
 

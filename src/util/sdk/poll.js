@@ -33,6 +33,9 @@ export default class Poll {
     /** Poll downvotes */
     downvotes;
 
+    /** Poll creation time */
+    createdAt;
+
     constructor(pollData) {
         this.title = pollData.title;
         this.content = pollData.content;
@@ -40,6 +43,7 @@ export default class Poll {
         this.date = pollData.date;
         this.upvotes = pollData.upvotes ?? [];
         this.downvotes = pollData.downvotes ?? [];
+        this.createdAt = pollData.createdAt;
     }
 
     static create = async (poll) => {
@@ -57,6 +61,7 @@ export default class Poll {
             date: new Date(),
             upvotes: [],
             downvotes: [],
+            createdAt: Date.now(),
         };
 
         // create poll

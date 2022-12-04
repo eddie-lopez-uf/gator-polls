@@ -16,6 +16,9 @@ export default class User {
     /** Initials */
     initials;
 
+    /** Password */
+    password;
+
     /** User upvotes */
     upvotes;
 
@@ -28,6 +31,7 @@ export default class User {
         this.id = userData.id;
         this.upvotes = userData.upvotes ?? [];
         this.downvotes = userData.downvotes ?? [];
+        this.password = userData.password;
 
         // get initials from full name
         const nameParts = this.fullName.split(" ");
@@ -96,6 +100,7 @@ export default class User {
                 id: this.id,
                 fullName: this.fullName,
                 email: this.email,
+                password: this.password,
             });
         } catch (err) {
             // eslint-disable-next-line no-console
@@ -136,6 +141,7 @@ export default class User {
                 id: this.id,
                 fullName: this.fullName,
                 email: this.email,
+                password: this.password,
             });
         } catch (err) {
             // eslint-disable-next-line no-console

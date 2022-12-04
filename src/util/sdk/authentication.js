@@ -70,7 +70,7 @@ export const register = async (user) => {
         await setDoc(doc(db, "users", storedUser.id), storedUser);
 
         // commit user to session
-        sessionStorage.setItem("user", storedUser.id);
+        localStorage.setItem("user", storedUser.id);
 
         // success
         return {
@@ -129,7 +129,7 @@ export const login = async (user) => {
 
             // commit user to session
             if (isPasswordCorrect) {
-                sessionStorage.setItem("user", retrievedUser.id);
+                localStorage.setItem("user", retrievedUser.id);
 
                 return {
                     status: 200,

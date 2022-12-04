@@ -11,9 +11,7 @@ import { requireSession } from "../../../../../../util/session";
  */
 const upvote = (pollId, setVote, vote) => {
     if (vote === "support") return;
-    Poll.upvote(pollId)
-        .then(() => setVote(vote))
-        .catch((err) => console.log(err));
+    Poll.upvote(pollId).catch();
 };
 
 /**
@@ -22,9 +20,7 @@ const upvote = (pollId, setVote, vote) => {
  */
 const downvote = (pollId, setVote, vote) => {
     if (vote === "reject") return;
-    Poll.downvote(pollId)
-        .then(() => setVote(vote))
-        .catch((err) => console.log(err));
+    Poll.downvote(pollId).catch();
 };
 
 /**
@@ -35,7 +31,6 @@ const downvote = (pollId, setVote, vote) => {
  */
 const userVote = (poll) => {
     const userId = requireSession();
-    console.log(userId);
 
     // check if upvote or downvote
     if (poll?.upvotes?.includes(userId)) return "support";
@@ -47,7 +42,6 @@ const userVote = (poll) => {
 
 export default function PollModule({ poll, onChange }) {
     const [vote, setVote] = useState(userVote(poll));
-    console.log(vote);
 
     useEffect(() => {
         if (onChange && !!vote) onChange(vote);
@@ -86,6 +80,8 @@ export default function PollModule({ poll, onChange }) {
 
 PollModule.propTypes = {
     poll: PropTypes.shape({
+        upvotes: PropTypes.arrayOf(PropTypes.string),
+        downvotes: PropTypes.arrayOf(PropTypes.string),
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,

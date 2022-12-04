@@ -3,7 +3,7 @@ import { redirect } from "react-router-dom";
 const accessLoader = ({ request }) => {
     const url = new URL(request.url);
 
-    if (sessionStorage.getItem("user")) {
+    if (localStorage.getItem("user")) {
         throw redirect("/");
     }
 
