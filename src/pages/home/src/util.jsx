@@ -42,7 +42,11 @@ export const applySearch = (data, polls) => {
     // sort the filtered polls
     if (data.sortDir === "asc") {
         filtered.sort((a, b) => {
-            if (data.sort === "newest") return a.createdAt - b.createdAt;
+            if (data.sort === "newest") {
+                const aDate = new Date(a.createdAt);
+                const bDate = new Date(b.createdAt);
+                return aDate - bDate;
+            }
             if (data.sort === "upvotes")
                 return a.upvotes.length - b.upvotes.length;
             if (data.sort === "downvotes")
@@ -75,12 +79,13 @@ export const applySearch = (data, polls) => {
  * Renders all polls into feed
  *
  * @param {Array} polls array of poll objects
+ * @param {Boolean} isYours boolean determineing whether the polls are belonging to the user
  * @returns All polls
  */
-export const renderAllPolls = (polls) => {
+export const renderAllPolls = (polls, isYours = false) => {
     // remove these lines when done implementing :)
     // eslint-disable-next-line no-console
-    console.log(polls);
+    console.log(polls, isYours);
 
     return [];
 };

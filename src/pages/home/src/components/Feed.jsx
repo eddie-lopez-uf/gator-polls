@@ -7,6 +7,7 @@ import { renderAllPolls } from "../util";
 
 export default function Feed({ title, polls }) {
     const [search, setSearch] = React.useState("");
+    const belongsToUser = window.location.pathname.includes("/polls/your");
 
     return (
         <div className="feed">
@@ -30,7 +31,9 @@ export default function Feed({ title, polls }) {
                     <Button type="submit">Apply Search</Button>
                 </Form>
             </div>
-            <div className="polls">{[...renderAllPolls([...polls])]}</div>
+            <div className="polls">
+                {[...renderAllPolls([...polls], belongsToUser)]}
+            </div>
         </div>
     );
 }

@@ -17,3 +17,9 @@
     justify-content: space-between;
     padding-top: 20px;
 }
+
+.poll-header-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

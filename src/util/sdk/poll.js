@@ -44,8 +44,33 @@ export default class Poll {
         this.upvotes = pollData.upvotes ?? [];
         this.downvotes = pollData.downvotes ?? [];
         this.createdAt = pollData.createdAt;
+        this.id = pollData.id;
     }
 
+    /**
+     * Given a poll, this function wil fetch all the users who upvoted it.
+     *
+     * @param {Object} poll poll object
+     * @returns users that upvote the poll
+     */
+    static fetchUpvotes = async (poll) => {
+        const upToDatePoll = await Poll.get(poll.id);
+
+        const upvoteIds = [];
+        upToDatePoll.upvotes.forEach((upvote) => {
+            if (!upvote.anonymous) upvoteIds.push(upvote.userId);
+        });
+
+        const userUpvotes = await User.getIn(upvoteIds);
+
+        return userUpvotes;
+    };
+
+    /**
+     * This function will create a new poll in the database
+     *
+     * @param {Object} poll poll object
+     */
     static create = async (poll) => {
         // validate poll content
         if (!poll?.title?.length) throw new Error("Poll must have a title.");
@@ -58,10 +83,9 @@ export default class Poll {
             content: poll.content,
             author: poll.author,
             authorEmail: poll.authorEmail,
-            date: new Date(),
             upvotes: [],
             downvotes: [],
-            createdAt: Date.now(),
+            createdAt: new Date().toISOString(),
         };
 
         // create poll
@@ -141,10 +165,42 @@ export default class Poll {
     };
 
     /**
-     * Get a poll by its ID.
+     * Gets a poll provided a specified id.
+     *
+     * @param {String} pollId poll id
+     * @returns the poll with specified id
+     */
+    static get = async (pollId) => {
+        // establish the document we want to get
+        const pollDoc = doc(db, "polls", pollId);
+
+        // get the poll
+        try {
+            const poll = await getDoc(pollDoc);
+
+            if (!poll.exists()) {
+                throw new Error("Poll does not exist.");
+            }
+
+            return new Poll(poll.data());
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            console.error(err);
+
+            if (err.message === "Poll does not exist.") {
+                throw new Error("Poll does not exist.");
+            }
+
+            throw new Error("Failed to get poll.");
+        }
+    };
+
+    /**
+     * Upvotes a poll, and respective voting user.
+     *
      * @param {String} pollId poll id
      */
-    static upvote = async (pollId) => {
+    static upvote = async (pollId, anonymous = false) => {
         // get current user by id
         const user = await User.fromSession();
 
@@ -157,18 +213,18 @@ export default class Poll {
             const poll = pollData.data();
 
             // check if user upvoted
-            if (poll.upvotes.includes(user.id)) return;
+            if (poll.upvotes.some((vote) => vote.userId === user.id)) return;
 
             // check if user downvoted
-            if (poll.downvotes.includes(user.id)) {
+            if (poll.downvotes.some((vote) => vote.userId === user.id)) {
                 // remove user from downvotes
                 poll.downvotes = poll.downvotes.filter(
-                    (downvote) => downvote !== user.id
+                    (downvote) => downvote.userId !== user.id
                 );
             }
 
             // add user to upvotes
-            poll.upvotes.push(user.id);
+            poll.upvotes.push({ userId: user.id, anonymous });
 
             // update poll
             await setDoc(pollDoc, poll);
@@ -185,7 +241,7 @@ export default class Poll {
      * Downvote a poll.
      * @param {String} pollId poll id
      */
-    static downvote = async (pollId) => {
+    static downvote = async (pollId, anonymous = false) => {
         // get current user by id
         const user = await User.fromSession();
 
@@ -198,18 +254,18 @@ export default class Poll {
             const poll = pollData.data();
 
             // check if user downvoted
-            if (poll.downvotes.includes(user.id)) return;
+            if (poll.downvotes.some((vote) => vote.userId === user.id)) return;
 
             // check if user upvoted
-            if (poll.upvotes.includes(user.id)) {
+            if (poll.upvotes.some((vote) => vote.userId === user.id)) {
                 // remove user from upvotes
                 poll.upvotes = poll.upvotes.filter(
-                    (upvote) => upvote !== user.id
+                    (upvote) => upvote.userId !== user.id
                 );
             }
 
             // add user to downvotes
-            poll.downvotes.push(user.id);
+            poll.downvotes.push({ userId: user.id, anonymous });
 
             // update poll
             await setDoc(pollDoc, poll);

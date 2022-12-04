@@ -1,4 +1,12 @@
-import { getDoc, doc, setDoc } from "firebase/firestore";
+import {
+    getDoc,
+    doc,
+    setDoc,
+    collection,
+    getDocs,
+    query,
+    where,
+} from "firebase/firestore";
 import { redirect } from "react-router-dom";
 import { requireSession } from "../session";
 import db from "../firebase";
@@ -64,6 +72,37 @@ export default class User {
 
         // return user
         return new User(userDoc.data());
+    };
+
+    /**
+     * Gets all users from the database that match the given array of ids
+     *
+     * @param {Array} userIds an array of user ids
+     * @returns User array
+     */
+    static getIn = async (userIds) => {
+        if (!userIds.length) return [];
+
+        // establish connection to users collection
+        const usersRef = collection(db, "users");
+
+        // get users
+        try {
+            const q = query(usersRef, where("id", "in", userIds));
+            const usersDoc = await getDocs(q);
+
+            const users = [];
+            usersDoc.forEach((user) => users.push(new User(user.data())));
+
+            // return users
+            return users;
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error(error);
+
+            // return empty array
+            throw new Error("Failed to get users.");
+        }
     };
 
     /**
