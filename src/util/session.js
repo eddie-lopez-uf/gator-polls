@@ -13,7 +13,7 @@ export const requireSession = () => {
 
     // redirect if sesion hasn't been set
     if (!userId) {
-        return redirect("/access/login");
+        throw redirect("/access/login");
     }
 
     return userId;

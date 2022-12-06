@@ -4,8 +4,6 @@ import Feed from "../../../../src/components/Feed";
 
 export default function VotedPage() {
     const loaderData = useLoaderData();
-    // eslint-disable-next-line no-console
-    console.log(loaderData);
 
     return (
         <div className="voted-polls">

@@ -13,6 +13,9 @@
     width: 1200px;
     margin: 20px;
     max-height: 80vh;
+    height: 80vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
 }
 
 #navigation {
@@ -51,6 +54,21 @@
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+.feed {
+    overflow: auto;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.polls {
+    overflow: auto;
+    height: calc(80vh - 85.26px - 160px);
+}
+
+.filters {
+    padding-bottom: 20px;
 }
 
 .feed-input {

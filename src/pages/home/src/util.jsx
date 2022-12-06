@@ -6,7 +6,7 @@ export const applySearch = (data, polls) => {
     const filter = data?.filter?.toLowerCase();
 
     let filtered = polls;
-    if (search?.length || filter?.length) {
+    if (search?.length || (filter?.length && filter !== "none")) {
         filtered = polls.filter((poll) => {
             if (!search?.length && !filter?.length) return true;
             let match = false;
@@ -24,7 +24,7 @@ export const applySearch = (data, polls) => {
             }
 
             // filter by filter
-            if (filter?.length) {
+            if (filter?.length || filter !== "none") {
                 if (filter === "upvoted")
                     match =
                         match ||
@@ -35,7 +35,6 @@ export const applySearch = (data, polls) => {
                         match ||
                         (poll?.downvotes?.length ?? 0) >
                             (poll?.upvotes?.length ?? 0);
-                else match = match || true;
             }
 
             return match;
@@ -48,7 +47,7 @@ export const applySearch = (data, polls) => {
             if (data.sort === "newest") {
                 const aDate = new Date(a.createdAt);
                 const bDate = new Date(b.createdAt);
-                return aDate - bDate;
+                return aDate.getTime() - bDate.getTime();
             }
             if (data.sort === "upvotes")
                 return a.upvotes.length - b.upvotes.length;
@@ -62,7 +61,11 @@ export const applySearch = (data, polls) => {
         });
     } else {
         filtered.sort((a, b) => {
-            if (data.sort === "newest") return b.createdAt - a.createdAt;
+            if (data.sort === "newest") {
+                const aDate = new Date(a.createdAt);
+                const bDate = new Date(b.createdAt);
+                return bDate.getTime() - aDate.getTime();
+            }
             if (data.sort === "upvotes")
                 return b.upvotes.length - a.upvotes.length;
             if (data.sort === "downvotes")
@@ -87,8 +90,8 @@ export const applySearch = (data, polls) => {
  */
 export const renderAllPolls = (polls, isYours = false) => {
     // remove these lines when done implementing :)
-    // eslint-disable-next-line no-console
-    console.log(polls, isYours);
 
-    return polls.map((poll) => <PollModule poll={poll} isYours={isYours} />);
+    return polls.map((poll) => (
+        <PollModule poll={poll} isYours={isYours} key={poll.id} />
+    ));
 };
