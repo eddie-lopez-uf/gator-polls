@@ -4,6 +4,16 @@ Welcome to Gator Polls! The web application dedicated to giving power to the peo
 
 ## Setup
 
+> **NOTE:** If you don't have a zip file of this project, ignore
+
+If you are running from a zip file of the project:
+
+1. Extract contents into directory
+2. Open terminal in that directory
+3. Run `npm start`
+
+The project should open in new window.
+
 ### Installing `npm` (if applicable)
 
 To completely setup the required environment you need to run for Gator Polls, you must first ensure that you have Node downloaded in your computer. You can download Node [here](https://nodejs.org/en/download/).
