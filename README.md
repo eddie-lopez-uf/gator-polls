@@ -10,7 +10,8 @@ If you are running from a zip file of the project:
 
 1. Extract contents into directory
 2. Open terminal in that directory
-3. Run `npm start`
+3. Run `npm install`
+4. Run `npm start`
 
 The project should open in new window.
 
