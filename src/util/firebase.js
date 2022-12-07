@@ -13,11 +13,13 @@ firebaseConfig.messagingSenderId =
 firebaseConfig.appId = process.env.REACT_APP_FIREBASE_APP_ID;
 
 // check that none of the config values are undefined
-Object.keys(firebaseConfig).forEach((key) => {
-    if (firebaseConfig[key] === undefined) {
-        throw new Error(`Firebase config value for "${key}" is undefined`);
-    }
-});
+if (process.env.REACT_APP_ACTIVE_CODEBASE) {
+    Object.keys(firebaseConfig).forEach((key) => {
+        if (firebaseConfig[key] === undefined) {
+            throw new Error(`Firebase config value for "${key}" is undefined`);
+        }
+    });
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

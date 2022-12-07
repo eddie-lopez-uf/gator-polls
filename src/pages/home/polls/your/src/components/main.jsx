@@ -4,12 +4,10 @@ import Feed from "../../../../src/components/Feed";
 
 export default function YourPolls() {
     const loaderData = useLoaderData();
-    // eslint-disable-next-line no-console
-    console.log(loaderData);
 
     return (
         <div className="your-polls">
-            <Feed polls={loaderData.polls ?? []} />
+            <Feed polls={loaderData.polls ?? []} isYours />
         </div>
     );
 }

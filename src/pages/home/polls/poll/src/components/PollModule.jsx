@@ -117,6 +117,7 @@ const copyPetition = (poll) => {
 export default function PollModule({ poll, onChange, isYours }) {
     // state
     const [vote, setVote] = useState(userVote(poll));
+    const [firstChange, setChange] = useState(false);
     const [voteAnonymously, setVoteAnonymously] = useState(false);
     const [supportCount, setSupportCount] = useState(
         vote === "support"
@@ -133,10 +134,19 @@ export default function PollModule({ poll, onChange, isYours }) {
     useEffect(() => {
         // handles immediate vote change
         if (vote === "support") {
+            if (userVote(poll) !== null || firstChange) {
+                setRejectCount(rejectCount - 1);
+            }
             setSupportCount(supportCount + 1);
-            setRejectCount(rejectCount - 1);
+            if (!firstChange) setChange(true);
         } else if (vote === "reject") {
+            if (userVote(poll) !== null || firstChange) {
+                setSupportCount(supportCount - 1);
+            }
             setRejectCount(rejectCount + 1);
+            if (!firstChange) setChange(true);
+        } else {
+            setRejectCount(rejectCount - 1);
             setSupportCount(supportCount - 1);
         }
 

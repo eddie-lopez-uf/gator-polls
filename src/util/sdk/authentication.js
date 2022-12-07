@@ -78,7 +78,7 @@ export const register = async (user) => {
         };
     } catch (err) {
         // eslint-disable-next-line no-console
-        console.log(err);
+        console.error(err);
 
         return {
             status: 500, // internal server error

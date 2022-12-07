@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Gator Polls
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to Gator Polls! The web application dedicated to giving power to the people by allowing them to post and vote about issues they care about.
 
-## Available Scripts
+## Setup
 
-In the project directory, you can run:
+### Installing `npm` (if applicable)
 
-### `npm start`
+To completely setup the required environment you need to run for Gator Polls, you must first ensure that you have Node downloaded in your computer. You can download Node [here](https://nodejs.org/en/download/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To ensure that Node has correctly installed, you should test it by running the following command on any terminal:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> this command should give you a list of instructions on how to use the Node Package Manager CLI
+```cmd
+npm -help
+```
 
-### `npm test`
+### Installing `git` (if applicable)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The next step you want for your setup is ensuring that you have Git installed in your computer. If you don't, you can download it [here](https://git-scm.com/download/win). 
 
-### `npm run build`
+To ensure that you have Git setup correctly, you should test it by running the following command on any terminal:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> this command should give you a list of instructions on how to use the Git CLI
+```cmd
+git --help
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Cloning Repo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To clone the repo, you're going to want to go to a directory of your chosing, open a terminal in that directory, and clone it from github using the following command:
 
-### `npm run eject`
+> this command will trigger the clonging from the remote repository, once done, it should create a new folder in that directory called `gator-polls`
+```cmd
+git clone https://github.com/eddie-lopez-uf/gator-polls.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Installing dependencies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Once the directory is created, you are going to want to enter the project with:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```cmd
+cd gator-polls
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+And install the dependencies using:
 
-## Learn More
+```cmd:
+npm i
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+After that is done, you will finally be all set for the final step of the process.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Getting environment
 
-### Code Splitting
+The `.env` file is critical for the success of running the project. Without it, we cannot connect to the database, and you will likely get a lot of strange errors. To get the environment please contact a contributor of the project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Once you have the `.env` file, you can copy it to the root of the project, without changing it's name.
 
-### Analyzing the Bundle Size
+### Starting the project!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+You're in the final stretch! Once you have ensured that you have followed all the steps preceding this one, you can finally run the project using:
 
-### Making a Progressive Web App
+```cmd
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This will compile and build all the code and deploy it to `localhost:3000` in your computer. It should automatically open a browser window so that you can see the project. From then on, all you have to do is create an account and start using Gator Polls!
