@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
@@ -170,14 +171,14 @@ export default function PollModule({ poll, onChange, isYours }) {
                     <ToggleButton
                         color="error"
                         value="reject"
-                        onClick={() => downvote(poll.id, voteAnonymously, vote)}
+                        // onClick={() => downvote(poll.id, voteAnonymously, vote)}
                     >
                         Reject ({rejectCount})
                     </ToggleButton>
                     <ToggleButton
                         color="success"
                         value="support"
-                        onClick={() => upvote(poll.id, voteAnonymously, vote)}
+                        // onClick={() => upvote(poll.id, voteAnonymously, vote)}
                     >
                         Support ({supportCount})
                     </ToggleButton>

@@ -12,7 +12,7 @@ const action = async ({ request }) => {
     };
 
     // attempt registration
-    const actionData = await register(user);
+    const actionData = register(user);
 
     return actionData;
 };

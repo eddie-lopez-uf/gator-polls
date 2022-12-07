@@ -7,7 +7,7 @@ const validatePassword = (inputEvent, inputSetter, errorSetter) => {
     const password = inputEvent;
 
     // define password standards through regex
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d])(?=.{8,})/;
 
     // sets password value
     inputSetter(password);

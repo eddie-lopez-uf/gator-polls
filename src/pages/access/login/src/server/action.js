@@ -10,7 +10,7 @@ const action = async ({ request }) => {
     };
 
     // attempt login
-    const actionData = await login(user);
+    const actionData = login(user);
 
     return actionData;
 };
