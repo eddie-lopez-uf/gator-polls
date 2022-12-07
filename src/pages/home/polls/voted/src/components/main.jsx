@@ -7,7 +7,7 @@ export default function VotedPage() {
 
     return (
         <div className="voted-polls">
-            <Feed polls={loaderData.polls} title="Voted Polls" />
+            <Feed polls={loaderData.polls ?? []} title="Voted Polls" />
         </div>
     );
 }

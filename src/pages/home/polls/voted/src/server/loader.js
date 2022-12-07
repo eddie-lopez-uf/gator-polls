@@ -13,7 +13,12 @@ const loader = async ({ request }) => {
         sortDir: searchParams.get("sortDir"),
     };
 
-    const polls = await Poll.getIn([...user.upvotes, ...user.downvotes]);
+    const pollsToGet = [...user.upvotes, ...user.downvotes];
+
+    let polls = [];
+    if (pollsToGet?.length) {
+        polls = await Poll.getIn([...user.upvotes, ...user.downvotes]);
+    }
 
     return {
         status: 200, // success
